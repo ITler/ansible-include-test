@@ -1,0 +1,13 @@
+.git
+.gitignore
+*.swp
+*.project
+*.template
+upstart/
+README.md
+.vagrant/
+vagrant.resources
+Vagrantfile
+dev.yml
+production.yml
+*~

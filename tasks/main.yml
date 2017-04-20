@@ -1,0 +1,56 @@
+---
+
+  - block:
+    # include with value defined as constant
+    - include: conversion.yml val=1
+    - include: conversion.yml val="{{ 2 | int }}"
+      tags:
+        - with_jinja2
+
+    tags:
+      - constant
+
+  - block:
+    # include with value defined as fact
+    - block:
+      - name: set test value -> 3
+        set_fact:
+          intval: 3
+      - name: show value of fact for next include with jinja2 filter call
+        debug: var=intval
+      - include: conversion.yml val="{{ intval | int }}"
+
+      tags:
+        - with_filter
+
+    - name: set test value -> 4
+      set_fact:
+        intval: 4
+    - name: show value of fact for next include
+      debug: var=intval
+    - include: conversion.yml val="{{ intval }}"
+
+    tags:
+      - fact
+
+  - block:
+    # include with value defined in defaults/main.yml
+    - block:
+      - name: show value from defaults/main.yml for next include with jinja2 filter call
+        debug: var=simple_val
+      - include: conversion.yml val="{{ simple_val | int }}"
+
+      tags:
+        - with_filter
+
+    - name: show value from defaults/main.yml for next include
+      debug: var=simple_val
+    - include: conversion.yml val="{{ simple_val }}"
+
+    tags:
+      - simple
+
+  # include with value defined in defaults/main.yml
+  - include: dict.yml
+    tags:
+      - dict

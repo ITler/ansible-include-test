@@ -1,0 +1,12 @@
+---
+
+  - name: value was passed as number
+    debug: var=val
+    when:
+      val is number
+
+  - name: value was passed as string
+    debug: var=val
+    when:
+      # both true
+      val is string

@@ -1,0 +1,20 @@
+---
+
+  - name: show values of dictionary for next include with jinja2 filter call
+    debug: var=val_from_dict
+
+  - include: conversion.yml val="{{ outer.val | int() }}"
+    with_items: "{{ val_from_dict }}"
+    loop_control:
+      loop_var: outer
+    tags:
+      - with_filter
+
+
+  - name: show values of dictionary for next include
+    debug: var=val_from_dict
+
+  - include: conversion.yml val="{{ outer.val }}"
+    with_items: "{{ val_from_dict }}"
+    loop_control:
+      loop_var: outer

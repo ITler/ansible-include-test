@@ -1,0 +1,8 @@
+*.swp
+vagrant.resources/
+.vagrant/
+*~
+*.retry
+
+# environment configuration should be handled elsewhere (globally, user specific, ENV variables)
+workspace

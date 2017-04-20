@@ -1,0 +1,8 @@
+---
+
+  simple_val: 10
+  val_from_dict:
+    - val: 20
+      dummy: val is type int, but seems to always be string when passed to include
+    - val: 21
+      dummy: val is type int, but seems to always be string when passed to include
